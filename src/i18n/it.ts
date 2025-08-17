@@ -23,7 +23,6 @@ const it = {
     },
      searchBar:{
         placeholder:"Cerca...",
-        search:"Cerca",
     },
     receiptsItem:{
         title:'Elenco ricevute:',

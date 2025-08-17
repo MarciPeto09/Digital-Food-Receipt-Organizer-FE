@@ -23,7 +23,6 @@ const en = {
     },
     searchBar:{
         placeholder:"Search...",
-        search:"Search",
     },
     receiptsItem:{
         title:'Receipt List:',
