@@ -20,6 +20,7 @@ const Basket = () => {
                         Authorization: `Bearer ${token}`,
                     },
                 });
+                console.log('Basket data:', response.data);
                 setBasket(response.data);
             } catch (error) {
                 console.error(error);
@@ -101,60 +102,73 @@ const Basket = () => {
         }
     };
 
-    return (
-        <>
-            <NavBar />
-            <div className="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-light">
-                <div className="card shadow-lg border-warning border-2 rounded-4 p-5 mt-5 w-100" style={{ maxWidth: 700 }}>
+return (
+    <>
+        <NavBar />
+        <div className="min-vh-100 d-flex flex-column align-items-center justify-content-start bg-light py-5">
+            <div className="card shadow-lg border-warning border-2 rounded-4 p-5 w-100" style={{ maxWidth: 700 }}>
+                <div className="text-center mb-4">
                     <span className="fs-1 d-inline-block" role="img" aria-label="basket">🧺</span>
-                    <h1 className="fw-bold mb-4 text-warning">
-                        Your Basket
-                    </h1>
-                    <div className="row row-cols-1 row-cols-md-2 g-4">
-                        {basket.items && basket.items.length > 0 ? basket.items.map((item) => (
-                            <div key={item.id} className="col">
-                                <div className="card h-100 text-dark shadow-sm border-warning border-2 rounded-3 bg-light">
-                                    <div className="card-body d-flex flex-column align-items-center">
-                                        <span className="fs-2" role="img" aria-label="item">🥕</span>
-                                        <h5 className="card-title mt-2 text-warning">
-                                            {(item.productDTO && item.productDTO.productName) || (item.productDTO && item.productDTO.id) || 'Unknown Product'}
-                                        </h5>
-                                        <p className="card-text mb-1"><strong>Quantity:</strong> {item.quantity}</p>
+                    <h1 className="fw-bold text-warning">Your Basket</h1>
+                </div>
+
+                {basket.items && basket.items.length > 0 ? (
+                    <ul className="list-group list-group-flush">
+                        {basket.items.map((item) => (
+                            <li
+                                key={item.id}
+                                className="list-group-item bg-white mb-3 rounded border-start border-4 border-warning shadow-sm"
+                            >
+                                <div className="d-flex flex-column flex-md-row align-items-md-center justify-content-between gap-3">
+                                    <div className="d-flex align-items-center gap-3">
+                                        <span className="fs-3" role="img" aria-label="item">🥕</span>
+                                        <div>
+                                            <h5 className="mb-1 text-warning">
+                                                {(item.productDTO?.productName || item.productDTO?.id || 'Unknown Product')}
+                                            </h5>
+                                            <p className="mb-1">Price: €{(item.productDTO?.unitPrice ?? 0).toFixed(2)}</p>
+                                            <p className="mb-1">Item Total: €{((item.quantity ?? 0) * (item.productDTO?.unitPrice ?? 0)).toFixed(2)}</p>
+                                        </div>
+                                    </div>
+
+                                    <div className="d-flex flex-wrap gap-2 align-items-center justify-content-end">
+                                        <p className="mb-0"><strong>Qty:</strong> {item.quantity}</p>
                                         <button
-                                            className="btn btn-warning mt-auto fw-semibold rounded-pill"
+                                            className="btn btn-sm btn-warning fw-semibold rounded-pill"
                                             onClick={() => handleAddItemQuantity(item.id)}
                                         >
-                                            {t('basket.add') || 'Add'}
+                                            +
                                         </button>
                                         <button
-                                            className="btn btn-warning mt-auto fw-semibold rounded-pill"
+                                            className="btn btn-sm btn-outline-warning fw-semibold rounded-pill"
                                             onClick={() => handleDecrementItemQuantity(item.id)}
                                         >
-                                            {t('basket.decrement') || 'Decrement'}
+                                            -
                                         </button>
                                         <button
-                                            className="btn btn-warning mt-auto fw-semibold rounded-pill"
+                                            className="btn btn-sm btn-danger fw-semibold rounded-pill"
                                             onClick={() => handleDeleteItem(item.id)}
                                         >
                                             {t('basket.delete') || 'Delete'}
                                         </button>
                                     </div>
                                 </div>
-                            </div>
-                        )) : (
-                            <div className="col">
-                                <div className="alert alert-warning">
-                                    {t('basket.empty') || "Your basket is empty!"}
-                                </div>
-                            </div>
-                        )}
+                            </li>
+                        ))}
+                    </ul>
+                ) : (
+                    <div className="alert alert-warning text-center">
+                        {t('basket.empty') || "Your basket is empty!"}
                     </div>
-                        <div className="mt-3 fw-bold text-success">
-                            Total: €{total}
-                        </div>
+                )}
+
+                <div className="mt-4 text-end fs-5 fw-bold text-success">
+                    Total: €{(total ?? 0).toFixed(2)}   
                 </div>
             </div>
-        </>
-    );
+        </div>
+    </>
+);
+
 };
 export default Basket;

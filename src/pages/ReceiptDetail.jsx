@@ -2,38 +2,40 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import NavBar from "../components/Navbar";
 import { useTranslation } from 'react-i18next';
+import ReceiptList from "../components/ReceiptList";
 
 const ReceiptDetail = () => {
     const API_URL = 'http://localhost:8080/api/receipts';
     const { t } = useTranslation();
     const [receipt, setReceipt] = useState({});
     const [loading, setLoading] = useState(true);
+    const [refreshTrigger, setRefreshTrigger] = useState(0);
 
-    useEffect(() => {
-        const fetchReceipt = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const basketId = localStorage.getItem("basketId");
+    const fetchReceipt = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        const basketId = localStorage.getItem("basketId");
 
-                const response = await axios.post(`${API_URL}/from-basket/${basketId}`,
-                    {},
-                    {
-                        headers: {
-                            Authorization: `Bearer ${token}`,
-                        },
-                    }
-                );
-                console.log("Receipt Data:", response.data);
-                setReceipt(response.data);
-            } catch (error) {
-                console.error(error);
-            } finally {
-                setLoading(false);
+        const response = await axios.post(`${API_URL}/from-basket/${basketId}`,
+            {},
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
             }
-        };
+        );
+        console.log("Receipt Data:", response.data);
+        setReceipt(response.data);
+    } catch (error) {
+        console.error(error);
+    } finally {
+        setLoading(false);
+    }
+};
 
-        fetchReceipt();
-    }, []);
+useEffect(() => {
+    fetchReceipt();
+}, []);
 
     const items = Array.isArray(receipt.items) ? receipt.items : [];
 
@@ -46,15 +48,16 @@ const ReceiptDetail = () => {
                 {},
                 { headers: { Authorization: `Bearer ${token}` } }
             );
+            setReceipt({ items: [], totalAmount: 0 });
+            setRefreshTrigger(prev => prev + 1);
         } catch (error) {
             console.error(error);
         }
     };
 
-
     if (loading) {
         return (
-            <div className="min-vh-100 d-flex align-items-center justify-content-center"
+            <div className="min-vh-100 py-5 d-flex flex-column align-items-center"
                 style={{
                     background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat'
                 }}>
@@ -67,9 +70,10 @@ const ReceiptDetail = () => {
         <>
             <NavBar />
             <div
-                className="min-vh-100 py-5 d-flex justify-content-center align-items-start"
+                className="min-vh-100 py-5 d-flex flex-column align-items-center"
                 style={{
-                    background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat'
+                    overflowY: 'auto',
+                    background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat fixed'
                 }}
             >
                 <div
@@ -85,10 +89,10 @@ const ReceiptDetail = () => {
                     <div className="text-center border-bottom pb-3 mb-3">
                         <span style={{ fontSize: '2.5rem' }} role="img" aria-label="receipt">🧾</span>
                         <h4 className="mt-2 mb-1" style={{ color: '#333' }}>
-                            Receipt #{receipt.id}
+                            Receipt
                         </h4>
                         <small className="text-muted">
-                            Purchased on: {new Date(receipt.purchaseDate).toLocaleDateString()}
+                            Purchased on: {new Date().toLocaleString()}
                         </small>
                     </div>
 
@@ -136,6 +140,9 @@ const ReceiptDetail = () => {
                     <div className="text-center mt-4 text-muted" style={{ fontSize: '0.85rem' }}>
                         Thank you for your purchase!
                     </div>
+                </div>
+                <div className="mb-5 w-100 px-3">
+                <ReceiptList refreshTrigger={refreshTrigger} />
                 </div>
             </div>
         </>

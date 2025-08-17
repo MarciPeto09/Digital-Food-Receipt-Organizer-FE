@@ -93,7 +93,7 @@ const handleAddBasketItemToBasket = async (e, item) => {
               <div key={item.id || item.itemName} className="col">
                 <div className="card h-100 text-dark">
                   <div className="card-body">
-                    <h5 className="card-title">{item.itemName}</h5>
+                    <h5 className="card-title">{item.productName}</h5>
                     <p className="card-text"><strong>Quantity:</strong> {item.quantity}</p>
                     <p className="card-text"><strong>Unit Price:</strong> {item.unitPrice?.toFixed(2)}</p>
                     <p className="card-text"><strong>Category:</strong> {item.category?.name || 'Uncategorized'}</p>

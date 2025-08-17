@@ -26,7 +26,10 @@ const en = {
         search:"Search",
     },
     receiptsItem:{
-        quantity:'Quantity',
+        title:'Receipt List:',
+        id:'Id',
+        total:'Total',
+        purchasedate:'Purchase Date',
     },
      login: {
      username:'Username',

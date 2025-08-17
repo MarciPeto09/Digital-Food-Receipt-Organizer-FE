@@ -26,7 +26,10 @@ const it = {
         search:"Cerca",
     },
     receiptsItem:{
-        quantity:'Quantità',
+        title:'Elenco ricevute:',
+        id:'Id',
+        total:'Totale',
+        purchasedate:'Data di Acquisto',
     },
     login: {
      username:'Nome utente',
