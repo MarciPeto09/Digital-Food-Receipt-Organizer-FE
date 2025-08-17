@@ -30,7 +30,7 @@ const Profile = () => {
       }
     };
     fetchUser();
-  }, [id]);
+  }, [username,email,photo]);
 
   return (
     <>
