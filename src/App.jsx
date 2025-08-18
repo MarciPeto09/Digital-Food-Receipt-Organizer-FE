@@ -12,12 +12,17 @@ import Ordination from './pages/Ordiation';
 import Basket from './pages/Basket';
 import Chat from './components/chat';
 import React, { useState } from "react";
+import { useLocation } from "react-router";
 
-function App() {
+function AppContent() {
   const [showChat, setShowChat] = useState(false);
-  
+  const location = useLocation();
+  const hideChatPaths = ["/", "/register"];
+  const shouldHideChat = hideChatPaths.includes(location.pathname);
+
+
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<RegistrationUser />} />
@@ -31,12 +36,12 @@ function App() {
         <Route path="/chat" element={<Chat />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
+
+       {!shouldHideChat && (
+        <>
       <button
         onClick={() => setShowChat(prev => !prev)}
-        className="
-    btn
-    btn-light
-    border
+        className="btn btn-light border
     rounded-circle
     d-flex
     align-items-center
@@ -55,13 +60,21 @@ function App() {
       {showChat && (
         <div
           className="position-fixed bottom-0 end-0 m-4 border rounded bg-white shadow d-flex flex-column"
-          style={{ width: "350px", height: "500px", zIndex: 1051 }}
+          style={{ width: "550px", height: "500px", zIndex: 1051 }}
         >
-          <Chat onClose={() => setShowChat(false)}/>
+          <Chat onClose={() => setShowChat(false)} />
         </div>
+       )}
+        </>
       )}
-
-    </BrowserRouter>
+    </>
   );
 }
+function App() {
+  return (
+  <BrowserRouter>
+    <AppContent />
+  </BrowserRouter>
+  );
+};
 export default App
