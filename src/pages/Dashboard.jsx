@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import FilterPanel from '../components/FilterPanel';
 import NavBar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Dashboard = () => {
 
@@ -24,6 +25,7 @@ const Dashboard = () => {
                 </div>
             </div>
         </div>
+        <Footer />
         </>
     );
 }; export default Dashboard;

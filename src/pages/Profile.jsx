@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import NavBar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Profile = () => {
   const API_URL = 'http://localhost:8080/api/users';
@@ -81,6 +82,7 @@ const Profile = () => {
         </div>
       </section>
     </div>
+    <Footer />
     </>
 );
 

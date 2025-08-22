@@ -1,4 +1,5 @@
 const it = {
+language:"Lingua",
  filter: {
         startDate: "Data di Inizio",
         endDate: "Data di Fine",

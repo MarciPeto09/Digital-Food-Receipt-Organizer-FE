@@ -73,8 +73,6 @@ const handleAddBasketItemToBasket = async (e, item) => {
         withCredentials: true, 
       }
     );
-
-    alert("Item added to basket successfully!");
     console.log(response.data);
 
   } catch (error) {

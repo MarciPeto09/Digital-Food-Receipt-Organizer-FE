@@ -41,18 +41,8 @@ function AppContent() {
         <>
       <button
         onClick={() => setShowChat(prev => !prev)}
-        className="btn btn-light border
-    rounded-circle
-    d-flex
-    align-items-center
-    justify-content-center
-    position-fixed
-    end-0
-    bottom-0
-    m-4
-    shadow-sm
-  "
-        style={{ width: '56px', height: '56px', zIndex: 1050 }}
+       className="btn btn-light border rounded-circle d-flex align-items-center justify-content-center position-fixed end-0 translate-middle shadow-sm"
+  style={{width: '56px',height: '56px',zIndex: 1050,top: '80%'}}
         aria-label="Chat"
       >
         <i className="bi bi-chat-dots" style={{ fontSize: '1.5rem', color: '#555' }}></i>

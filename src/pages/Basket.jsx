@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import NavBar from '../components/Navbar';
 import { useTranslation } from 'react-i18next';
+import Footer from '../components/Footer';
 
 const Basket = () => {
     const API_URL = 'http://localhost:8080/api/basket';
@@ -167,6 +168,7 @@ return (
                 </div>
             </div>
         </div>
+        <Footer />
     </>
 );
 

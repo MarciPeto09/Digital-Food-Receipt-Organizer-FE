@@ -1,4 +1,5 @@
 const en = {
+    language:"Language",
     filter: {
         startDate: "Start Date",
         endDate: "End Date",

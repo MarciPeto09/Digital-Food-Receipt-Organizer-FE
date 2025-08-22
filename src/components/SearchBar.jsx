@@ -69,7 +69,7 @@ const SearchBar = () => {
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder={t('searchBar.placeholder') || "Search..."}
                 className="form-control mb-2"
-                style={{ borderColor: "#ff6f61" }}
+                style={{ borderColor: "#ff6f61",width: '100%' }}
             />
 
             {searchTerm.length > 0 && (

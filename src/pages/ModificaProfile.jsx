@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import NavBar from '../components/Navbar';
 import { useNavigate } from "react-router-dom";
+import Footer from '../components/Footer';
 
 
 const ModificaProfile = () => {
@@ -160,6 +161,7 @@ const ModificaProfile = () => {
                 </div>
             </div>
         </div>
+        <Footer />
     </>
 );
 }; export default ModificaProfile;

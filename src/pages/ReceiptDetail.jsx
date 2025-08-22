@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import NavBar from "../components/Navbar";
 import { useTranslation } from 'react-i18next';
 import ReceiptList from "../components/ReceiptList";
+import Footer from '../components/Footer';
 
 const ReceiptDetail = () => {
     const API_URL = 'http://localhost:8080/api/receipts';
@@ -145,6 +146,7 @@ useEffect(() => {
                 <ReceiptList refreshTrigger={refreshTrigger} />
                 </div>
             </div>
+            <Footer />
         </>
 
     );
