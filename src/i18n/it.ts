@@ -21,6 +21,7 @@ language:"Lingua",
         profile:"Profilo",
         logout:"Esci",
         ordination:"Ordinazione",
+        register:"Registra utente",
     },
      searchBar:{
         placeholder:"Cerca...",

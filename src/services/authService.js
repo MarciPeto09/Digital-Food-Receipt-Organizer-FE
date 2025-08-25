@@ -31,15 +31,18 @@ export const login = async (credentials) => {
 
 
 export const register = async (userData) => {
+    const token = localStorage.getItem("token");
     try{
         const response = await axios.post(`${API_URL}/register`,userData, {
         headers: {
           'Content-Type': 'application/json', 
+          'Authorization': `Bearer ${token}`
         },
     });
         return response.data;
     }catch(error){
-        throw error.response?.data ||  { message: 'Registration  failed' };  
+        console.error("Registration failed: ", error);   
+        throw error.response?.data || { message: 'Registration failed. Please try again.' }; 
     }
 };
 

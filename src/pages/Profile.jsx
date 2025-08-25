@@ -12,6 +12,7 @@ const Profile = () => {
   const [email, setEmail] = useState("");
   const { id } = useParams();
   const [photo, setPhoto] = useState();
+  const [role,setRole] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,6 +27,7 @@ const Profile = () => {
         setUsername(response.data.username);
         setEmail(response.data.email);
         setPhoto(response.data.photo);
+        setRole(response.data.role)
       } catch (error) {
         console.error(error);
       }
@@ -60,6 +62,7 @@ const Profile = () => {
                       <span style={{ fontSize: '2.2rem', marginBottom: '0.5rem', display: 'inline-block' }} role="img" aria-label="chef">👨‍🍳</span>
                       <h2 className="fw-bold mb-2" style={{ color: '#d35400' }}>{username}</h2>
                       <h5 className="mb-3" style={{ color: '#27ae60' }}>{email}</h5>
+                      <h5 className="mb-3" style={{ color: '#27ae60' }}>{role.charAt(0).toUpperCase() + role.slice(1).toLowerCase()}</h5>
                       <button
                         className="btn btn-primary btn-sm px-4"
                         style={{

@@ -22,6 +22,7 @@ const Login = () => {
       const { token, user } = await login({ username, password });
       localStorage.setItem("userId", user.id);
       localStorage.setItem("basketId", user.basket.id);
+      localStorage.setItem("userRole", user.role); 
       navigate("/home");
     } catch (err) {
       setError(err.message || t('login.loginError'));

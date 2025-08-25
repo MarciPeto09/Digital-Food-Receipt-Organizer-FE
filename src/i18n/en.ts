@@ -21,6 +21,7 @@ const en = {
         profile:"Profile",
         logout:"Logout",
         ordination:"Ordination",
+        register:"Register User",
     },
     searchBar:{
         placeholder:"Search...",

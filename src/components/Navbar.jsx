@@ -20,6 +20,10 @@ const NavBar = () => {
     setIsOpen(!isOpen);
   };
 
+  const isAdmin = () => {
+  return localStorage.getItem("userRole") === "ROLE_ADMIN";
+};
+
   return (
     <nav className="navbar navbar-light bg-light px-3 py-2 shadow-sm">
       <div className="container-fluid">
@@ -51,6 +55,7 @@ const NavBar = () => {
             <Link to="/receipts" className="nav-link">Receipt Detail</Link>
             <Link to="/dashboard" className="nav-link">{t('nav.dashboard')}</Link>
             <Link to="/analytics" className="nav-link">{t('nav.analytics')}</Link>
+            {isAdmin() && (<Link to="/register" className="nav-link">{t('nav.register')}</Link>)}
             <Link to={`/profile/${userId}`} className="nav-link">{t('nav.profile')}</Link>
             <Link to="/basket" className="nav-link">
               <i className="bi bi-cart" style={{ fontSize: '1.5rem' }}></i>

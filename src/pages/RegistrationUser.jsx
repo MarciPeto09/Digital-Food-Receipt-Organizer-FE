@@ -2,41 +2,44 @@ import { useState } from "react";
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from "react-router-dom";
 import { register } from '../services/authService';
-import Footer from '../components/Footer';
+import NavBar from "../components/Navbar";
+import Footer from "../components/Footer";
 
-
-
-const RegistrationUser = () =>{
+const RegistrationUser = () => {
     const { t } = useTranslation();
     const navigate = useNavigate();
-    const[username,setUsername] = useState("");
-    const[email,setEmail] = useState("");
-    const[password,setPassword] = useState("");
-    const[userId,setUserId]=useState(0);
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [role, setRole] = useState("");
+
+    const roleMap = {
+        user: "ROLE_USER",
+        vendor: "ROLE_VENDOR",
+        admin: "ROLE_ADMIN",
+        analyst: "ROLE_ANALYST"
+    };
 
     const handleRegister = async (e) => {
-            e.preventDefault(); 
-             if (!username || !password || !email) {
-                alert(t('login.credentialError'));
-                return;
-            }
-            try {
-                const userData = await register({ username, email, password });
-                localStorage.setItem("userId",userData.id);
-                localStorage.setItem("basketId",userData.basket.id)
-                setUserId(localStorage.getItem("userId"));
-                navigate("/home");
-            } catch (err) {
-                alert(t('login.loginError'));
-            }
-        };
-    
+        e.preventDefault();
+        if (!username || !password || !email || !role) {
+            alert(t('login.credentialError'));
+            return;
+        }
+        try {
+            const userData = await register({ username, email, password, role: roleMap[role] });
+            navigate("/home");
+        } catch (err) {
+            alert(t('login.loginError'));
+            console.error('Registration failed:', err.response);
+        }
+    };
 
-        return (
-        <div className="min-vh-100 d-flex align-items-center justify-content-center"
-            style={{
-                background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat'
-            }}>
+
+    return (
+        <>
+        <NavBar />
+        <div className="min-vh-100 d-flex align-items-center justify-content-center" style={{ background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat' }}>
             <div
                 className="card shadow-lg border-0 rounded-4 p-4"
                 style={{
@@ -108,6 +111,22 @@ const RegistrationUser = () =>{
                             }}
                         />
                     </div>
+                    <div className="mb-3">
+                        <label htmlFor="role" className="form-label fw-bold" style={{ color: '#d35400' }}>Role</label>
+                        <select value={role} onChange={(e) => setRole(e.target.value)} className="form-control" style={{
+                            border: '2px solid #ffb347',
+                            backgroundColor: '#fffbe6',
+                            color: '#d35400',
+                            height: '42px'
+                        }} >
+                            <option value="">Role... </option>
+                            <option value="user">USER</option>
+                            <option value="vendor">VENDOR</option>
+                            <option value="admin">ADMIN</option>
+                            <option value="analyst">ANALYST</option>
+                        </select>
+
+                    </div>
                     <button
                         type="submit"
                         className="btn btn-primary w-100 d-flex align-items-center justify-content-center"
@@ -126,8 +145,9 @@ const RegistrationUser = () =>{
                     </button>
                 </form>
             </div>
-            <Footer />
         </div>
+        <Footer/>
+  </>
     );
 
-};export default RegistrationUser;
+}; export default RegistrationUser;
