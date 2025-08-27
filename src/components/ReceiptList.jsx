@@ -4,94 +4,104 @@ import axios from 'axios';
 import jsPDF from 'jspdf';
 
 const ReceiptList = ({ refreshTrigger }) => {
-const API_URL = 'http://localhost:8080/api/receipts';
+    const API_URL = 'http://localhost:8080/api/receipts';
     const { t } = useTranslation();
     const [receiptsList, setReceiptList] = useState([]);
 
     const fetchReceiptList = async () => {
-            
-            const token = localStorage.getItem('token');
-            const userId = localStorage.getItem('userId');
-            const response = await axios.get(`${API_URL}/user/${userId}`,
-                {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                }
-            );
-            setReceiptList(response.data);
-        };
+
+        const token = localStorage.getItem('token');
+        const userId = localStorage.getItem('userId');
+        const response = await axios.get(`${API_URL}/user/${userId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            }
+        );
+        setReceiptList(response.data);
+    };
 
     useEffect(() => {
-            fetchReceiptList();
+        fetchReceiptList();
     }, [refreshTrigger]);
 
     const formatDate = (d) => {
-    if (Array.isArray(d)) {
-        const [y, m, day, h, min, s, ns = 0] = d;
-        return new Date(y, m - 1, day, h, min, s, Math.floor(ns / 1_000_000)).toLocaleString();
-    }
-    const date = new Date(d);
-    return isNaN(date) ? 'Invalid date' : date.toLocaleString();
+        if (Array.isArray(d)) {
+            const [y, m, day, h, min, s, ns = 0] = d;
+            return new Date(y, m - 1, day, h, min, s, Math.floor(ns / 1_000_000)).toLocaleString();
+        }
+        const date = new Date(d);
+        return isNaN(date) ? 'Invalid date' : date.toLocaleString();
     };
 
 
 
     const handleDeleteReceipts = async (e, item) => {
         e.preventDefault();
-        try{
+        try {
             const token = localStorage.getItem("token");
             const response = await axios.delete(`${API_URL}/${item.id}`,
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-            
-        fetchReceiptList();
+
+            fetchReceiptList();
         } catch (error) {
             console.error(error);
         }
-        };
-    
+    };
+
     const onButtonClick = async (item) => {
-     try {
-        const token = localStorage.getItem('token');
+        try {
+            const token = localStorage.getItem('token');
 
-        const response = await axios.get(`${API_URL}/get?receiptId=${item.id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
+            const response = await axios.get(`${API_URL}/get?receiptId=${item.id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            const receipt = response.data;
+            const doc = new jsPDF();
+            let y = 38;
+            doc.setFont('courier');
+            doc.setFontSize(16);
+            doc.text('Ricevuta di Acquisto', 105, 10, { align: 'center' });
+            doc.setFontSize(12);
+            doc.text(`ID Ricevuta: ${receipt.id}`, 10, 20);
+            doc.text(`Data Acquisto: ${formatDate(receipt.purchaseDate)}`, 10, 27);
+            if (receipt.deliveryAddress) {
+                doc.text(`Indirizzo di consegna:`, 10, y);
+                y += 7;
+                const lines = doc.splitTextToSize(receipt.deliveryAddress, 180); 
+                doc.text(lines, 10, y);
+                y += lines.length * 7; 
+            } else {
+                y = 38; 
             }
-        });
-
-        const receipt = response.data;
-        const doc = new jsPDF();
-        doc.setFont('courier');  
-        doc.setFontSize(16);
-        doc.text('Ricevuta di Acquisto', 105, 10, { align: 'center' });
-        doc.setFontSize(12);
-        doc.text(`ID Ricevuta: ${receipt.id}`, 10, 20);
-        doc.text(`Data Acquisto: ${formatDate(receipt.purchaseDate)}`, 10, 27);
-        doc.line(10, 30, 200, 30);
-        let y = 38;
-        doc.setFont(undefined, 'bold');
-        doc.text('Q.ta', 10, y);
-        doc.text('Prodotto', 30, y);
-        doc.text('Prezzo', 160, y);
-        doc.setFont(undefined, 'normal');
-        y += 8;
-        receipt.items?.forEach((prod) => {
-            doc.text(`${prod.quantity}`, 10, y);
-            doc.text(`${prod.itemName}`, 30, y);
-            doc.text(`$${prod.unitPrice.toFixed(2)}`, 160, y, { align: 'right' });
+            doc.line(10, y, 200, y);
+            y += 5;
+            doc.setFont(undefined, 'bold');
+            doc.text('Q.ta', 10, y);
+            doc.text('Prodotto', 30, y);
+            doc.text('Prezzo', 160, y);
+            doc.setFont(undefined, 'normal');
             y += 8;
-        }); 
-        doc.line(10, y + 2, 200, y + 2);
-        doc.setFont(undefined, 'bold');
-        doc.text(`Totale: $${receipt.totalAmount.toFixed(2)}`, 160, y + 10, { align: 'right' });
+            receipt.items?.forEach((prod) => {
+                doc.text(`${prod.quantity}`, 10, y);
+                doc.text(`${prod.itemName}`, 30, y);
+                doc.text(`$${prod.unitPrice.toFixed(2)}`, 160, y, { align: 'right' });
+                y += 8;
+            });
+            doc.line(10, y + 2, 200, y + 2);
+            doc.setFont(undefined, 'bold');
+            doc.text(`Totale: $${receipt.totalAmount.toFixed(2)}`, 160, y + 10, { align: 'right' });
 
-        doc.save(`ricevuta-${receipt.id}.pdf`);
-    } catch (error) {
-        console.error('Errore nella generazione del PDF:', error);
-    }
-};
+            doc.save(`ricevuta-${receipt.id}.pdf`);
+        } catch (error) {
+            console.error('Errore nella generazione del PDF:', error);
+        }
+    };
 
 
 
@@ -115,18 +125,18 @@ const API_URL = 'http://localhost:8080/api/receipts';
                             </div>
                         </div>
                         <div className="d-flex flex-row gap-2">
-                        <button
-                            className="btn btn-danger d-flex justify-content-between align-items-center fw-semibold rounded-pill px-2s py-1"
-                            onClick={(e) => handleDeleteReceipts(e,items)}
-                        >
-                            {t('basket.delete') || 'Delete'}
-                        </button>
-                        <button
-                            className="btn btn-info d-flex justify-content-between align-items-center fw-semibold rounded-pill px-2s py-1   "
-                            onClick={() => onButtonClick(items)}
-                        >
-                            Download
-                        </button>
+                            <button
+                                className="btn btn-danger d-flex justify-content-between align-items-center fw-semibold rounded-pill px-2s py-1"
+                                onClick={(e) => handleDeleteReceipts(e, items)}
+                            >
+                                {t('basket.delete') || 'Delete'}
+                            </button>
+                            <button
+                                className="btn btn-info d-flex justify-content-between align-items-center fw-semibold rounded-pill px-2s py-1   "
+                                onClick={() => onButtonClick(items)}
+                            >
+                                Download
+                            </button>
                         </div>
                     </li>
 

@@ -53,11 +53,20 @@ language:"Lingua",
         decrement:"Ridurre",
         delete:"Eliminare",
         save:"Acquista",
+        empty:"Vuota",
     },
     register:{
         name:"Nome",
         location:"Indirizzo",
-    }
+    },
+    address:{
+        add:"Aggiungi un nuovo indirizzo",
+        detail:"Dettagli sull'indirizzo",
+        save:"Salva",
+        placeholder:"Inserisci l'indirizzo manualmente...",
+        position:"Prendendo posizione...",
+        address:"Indirizzo",
+    },
 
 };
 

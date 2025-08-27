@@ -56,8 +56,10 @@ const NavBar = () => {
             <Link to="/dashboard" className="nav-link">{t('nav.dashboard')}</Link>
             <Link to="/analytics" className="nav-link">{t('nav.analytics')}</Link>
             {isAdmin() && (
-              <Link to="/register" className="nav-link">{t('nav.register')}</Link>,
+              <>
+              <Link to="/register" className="nav-link">{t('nav.register')}</Link>
               <Link to="/registerVendor" className="nav-link">{t('nav.registerVendor')}</Link>
+              </>
               )}
             <Link to={`/profile/${userId}`} className="nav-link">{t('nav.profile')}</Link>
             <Link to="/basket" className="nav-link">

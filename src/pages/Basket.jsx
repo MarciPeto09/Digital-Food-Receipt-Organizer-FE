@@ -111,6 +111,7 @@ return (
                 <div className="text-center mb-4">
                     <span className="fs-1 d-inline-block" role="img" aria-label="basket">🧺</span>
                     <h1 className="fw-bold text-warning">Your Basket</h1>
+                    <h6 className="fst-italic text-dark">{basket.user?.deliveryAddress}</h6>
                 </div>
 
                 {basket.items && basket.items.length > 0 ? (

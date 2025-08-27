@@ -53,11 +53,20 @@ const en = {
         decrement:"Decrement",
         delete:"Delete",
         save:"Purchase",
+        empty:"Empty"
     },
     register:{
         name:"Name",
         location:"Address",
-    }
+    },
+    address:{
+        add:"Add a new address",
+        detail:"Detail about address",
+        save:"Save",
+        placeholder:"Enter the address manually...",
+        position:"Taking your position...",
+        address:"Address",
+    },
     
 };
 

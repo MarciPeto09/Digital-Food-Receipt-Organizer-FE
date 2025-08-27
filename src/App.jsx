@@ -16,11 +16,12 @@ import { useLocation } from "react-router";
 import Vendor from './pages/Vendor';
 import RegistrationVendor from './pages/RegistrationVendor';
 import VendorProductOrdination from './pages/VendorProductOrdination';
+import Address from './components/Address';
 
 function AppContent() {
   const [showChat, setShowChat] = useState(false);
   const location = useLocation();
-  const hideChatPaths = ["/", "/register"];
+  const hideChatPaths = ["/"];
   const shouldHideChat = hideChatPaths.includes(location.pathname);
 
 
@@ -39,6 +40,7 @@ function AppContent() {
         <Route path="/chat" element={<Chat />} />
         <Route path="/vendor" element={<Vendor />} />
         <Route path="/registerVendor" element={<RegistrationVendor />} />
+        <Route path="/address" element={<Address />} />
         <Route path="/vendorProductOrdination/:vendorId" element={<VendorProductOrdination />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
