@@ -13,6 +13,9 @@ import Basket from './pages/Basket';
 import Chat from './components/chat';
 import React, { useState } from "react";
 import { useLocation } from "react-router";
+import Vendor from './pages/Vendor';
+import RegistrationVendor from './pages/RegistrationVendor';
+import VendorProductOrdination from './pages/VendorProductOrdination';
 
 function AppContent() {
   const [showChat, setShowChat] = useState(false);
@@ -34,6 +37,9 @@ function AppContent() {
         <Route path="/basket" element={<Basket />} />
         <Route path="/ordination" element={<Ordination />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path="/vendor" element={<Vendor />} />
+        <Route path="/registerVendor" element={<RegistrationVendor />} />
+        <Route path="/vendorProductOrdination/:vendorId" element={<VendorProductOrdination />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 

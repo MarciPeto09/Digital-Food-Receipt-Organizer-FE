@@ -20,8 +20,9 @@ language:"Lingua",
         analytics:"Analisi",
         profile:"Profilo",
         logout:"Esci",
-        ordination:"Ordinazione",
+        ordination:"Tutti i Prodotti",
         register:"Registra utente",
+        registerVendor:"Registra Fornitore",
     },
      searchBar:{
         placeholder:"Cerca...",
@@ -39,7 +40,7 @@ language:"Lingua",
      logButton:"Accedi",
      credentialError:"Credenziali non valide",
      loginError:"Errore durante il login",
-     register:"Registration",
+     register:"Registrazione",
      photo:"Fotografia",
      update:"Aggiorna",
     },
@@ -53,6 +54,10 @@ language:"Lingua",
         delete:"Eliminare",
         save:"Acquista",
     },
+    register:{
+        name:"Nome",
+        location:"Indirizzo",
+    }
 
 };
 

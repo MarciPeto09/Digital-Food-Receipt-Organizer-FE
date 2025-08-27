@@ -3,12 +3,17 @@ import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import '../App.css';
 import NavBar from '../components/Navbar';
+import { useParams } from "react-router-dom";
 
-const Ordination = () => {
-  const API_URL = 'http://localhost:8080/api/products';
+
+const VendorProductOrdination = () =>{
+  const API_URL = 'http://localhost:8080/api/vendors';
   const { t } = useTranslation();
   const [items, setItems] = useState([]);
   const [quantities, setQuantities] = useState({});
+  const { vendorId } = useParams();
+
+
 
  const handleQuantityChange = (itemId, value) => {
   const parsed = parseInt(value, 10);
@@ -22,7 +27,7 @@ const Ordination = () => {
     const fetchItems = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get(`${API_URL}`, {
+        const response = await axios.get(`${API_URL}/${vendorId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -111,6 +116,4 @@ const handleAddBasketItemToBasket = async (e, item) => {
       </div>
     </>
   );
-}
-
-export default Ordination;
+}; export default VendorProductOrdination;

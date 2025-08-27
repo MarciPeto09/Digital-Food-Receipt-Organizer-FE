@@ -20,8 +20,9 @@ const en = {
         analytics:"Analytics",
         profile:"Profile",
         logout:"Logout",
-        ordination:"Ordination",
+        ordination:"All Products",
         register:"Register User",
+        registerVendor:"Register Vendor",        
     },
     searchBar:{
         placeholder:"Search...",
@@ -53,6 +54,10 @@ const en = {
         delete:"Delete",
         save:"Purchase",
     },
+    register:{
+        name:"Name",
+        location:"Address",
+    }
     
 };
 
