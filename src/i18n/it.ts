@@ -69,6 +69,28 @@ language:"Lingua",
     },
     vendor:{
         allVendors:"Tutti i Venditori..."
+    },
+    category:{
+        category:"Categorie",
+        meat:"Carne",
+        fish:"Pesce e Frutti di Mare",
+        eggs:"Uova",
+        dairy:"Latticini",
+        grains:"Cereali",
+        vegetables:"Verdura e Ortaggi",
+        fruit:"Frutta",
+        oil:"Olio",
+        sweet:"SDolci, Dessert, Snack",
+        drinks:"Bevande",
+        spices:"Spezie, Erbe e Insaporitori",
+        frozen:"Alimenti Surgelati / Pronti",
+        packaging:"Packaging e Monouso",
+        products:"Prodotti per la Cucina",
+    },
+    products: {
+        name: "Nome",
+        quantity:"Quantita",
+        unitPrice:"Prezzo Unitario",
     }
 
 };

@@ -1,15 +1,17 @@
 import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
-import { Link } from 'react-router-dom';
 import Address from '../components/Address';
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import Vendor from '../components/Vendor';
+import { Link } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
 
   const { t } = useTranslation();
   const [isOpen, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const toggleAddress = () => {
     setOpen(!isOpen);
@@ -25,6 +27,24 @@ const Home = () => {
       document.body.style.overflow = 'auto';
     };
   }, [isOpen]);
+
+  const categories = [
+    { key: 'MEAT', label: t('category.meat') },
+    { key: 'FISH', label: t('category.fish') },
+    { key: 'EGGS', label: t('category.eggs') },
+    { key: 'DAIRY', label: t('category.dairy') },
+    { key: 'GRAINS', label: t('category.grains') },
+    { key: 'VEGETABLES', label: t('category.vegetables') },
+    { key: 'FRUIT', label: t('category.fruit') },
+    { key: 'OIL', label: t('category.oil') },
+    { key: 'SWEET', label: t('category.sweet') },
+    { key: 'DRINKS', label: t('category.drinks') },
+    { key: 'SPICES', label: t('category.spices') },
+    { key: 'FROZEN', label: t('category.frozen') },
+    { key: 'PACKAGING', label: t('category.packaging') },
+    { key: 'PRODUCTS', label: t('category.products') },
+  ];
+
 
   return (
     <>
@@ -58,11 +78,33 @@ const Home = () => {
         </div>
       </div>
 
-       <div className="text-center py-3">
-        <Link to="/ordination" className="nav-link" style={{ color: '#27ae60', fontWeight: 1000 }}>
-          Food
-        </Link>
+      <div className="d-flex justify-content-center">
+        <div className="container px-3">
+          <div className="py-4">
+            <h2 className="fw-bold text-center mb-4">{t('category.category')}</h2>
+
+            <div className="d-flex flex-wrap justify-content-center gap-4">
+              {categories.map(({ key, label }) => (
+                <Link
+                  key={key}
+                  to={`/productsXCategory/${key}`}
+                  className="text-decoration-none"
+                  style={{
+                    color: 'inherit',
+                    flex: '0 0 auto',
+                    width: '200px',
+                  }}
+                >
+                  <div className="card shadow-lg border-0 h-100 text-center p-3">
+                    <h4 className="card-title fw-bold">{label}</h4>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
+
       <Footer />
     </>
   );

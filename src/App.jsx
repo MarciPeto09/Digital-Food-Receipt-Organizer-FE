@@ -17,6 +17,7 @@ import Vendor from './components/Vendor';
 import RegistrationVendor from './pages/RegistrationVendor';
 import VendorProductOrdination from './pages/VendorProductOrdination';
 import Address from './components/Address';
+import ProductsXCategory from './pages/ProductsXCategory';
 
 function AppContent() {
   const [showChat, setShowChat] = useState(false);
@@ -41,6 +42,7 @@ function AppContent() {
         <Route path="/vendor" element={<Vendor />} />
         <Route path="/registerVendor" element={<RegistrationVendor />} />
         <Route path="/address" element={<Address />} />
+        <Route path="/productsXCategory/:itemCategory" element={<ProductsXCategory />} />
         <Route path="/vendorProductOrdination/:vendorId" element={<VendorProductOrdination />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

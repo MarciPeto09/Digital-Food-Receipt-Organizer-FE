@@ -59,8 +59,6 @@ const Vendor = () => {
                 });
 
                 setVendor(response.data);
-                console.log(Array.isArray(vendor));
-                console.log(vendor);
             } catch (error) {
                 console.log(error);
             }
