@@ -5,15 +5,12 @@ const Footer  = () => {
 const { t } = useTranslation();
 
 return (
-  <nav className="navbar navbar-light bg-light shadow-sm border-top">
-    <div className="container-fluid d-flex justify-content-end">
-       <div className="navbar-nav">
-      <Link to="/" className="nav-link ">
-        {t('nav.logout')}
-      </Link>
-      </div>
-    </div>
-  </nav>
+  <nav className="navbar navbar-light shadow-sm border-top">
+  <div className="container-fluid d-flex justify-content-between">
+    <Link to="https://github.com/MarciPeto09" className="nav-link">Marcelina GitHub</Link>
+    <Link to="/" className="nav-link">{t('nav.logout')}</Link>
+  </div>
+</nav>
 );
 
 };export default Footer;
