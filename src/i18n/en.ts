@@ -67,6 +67,9 @@ const en = {
         position:"Taking your position...",
         address:"Address",
     },
+    vendor:{
+        allVendors:"All Vendors..."
+    }
     
 };
 

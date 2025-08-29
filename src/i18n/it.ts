@@ -67,6 +67,9 @@ language:"Lingua",
         position:"Prendendo posizione...",
         address:"Indirizzo",
     },
+    vendor:{
+        allVendors:"Tutti i Venditori..."
+    }
 
 };
 

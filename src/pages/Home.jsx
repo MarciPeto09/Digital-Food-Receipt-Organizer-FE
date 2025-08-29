@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Address from '../components/Address';
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
+import Vendor from '../components/Vendor';
 
 const Home = () => {
 
@@ -32,47 +33,35 @@ const Home = () => {
         <button onClick={toggleAddress} className="btn btn-light border">
           {t('address.address')}
         </button>
-       {isOpen && (
-    <div
-      className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
-      style={{
-        background: "rgba(0,0,0,0.5)",  
-        zIndex: 1051
-      }}
-    >
-      <Address onClose={() => setOpen(false)}/>
-    </div>
-  )}
+        {isOpen && (
+          <div
+            className="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center"
+            style={{
+              background: "rgba(0,0,0,0.5)",
+              zIndex: 1051
+            }}
+          >
+            <Address onClose={() => setOpen(false)} />
+          </div>
+        )}
       </div>
-      <div
-        className="min-vh-100 d-flex flex-column align-items-center justify-content-center">
-        <div
-          className="card shadow-lg border-0 rounded-4 p-5"
-          style={{
-            background: 'linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%)',
-            border: '2px solid #ffb347',
-            maxWidth: 500,
-            width: '100%',
-            textAlign: 'center'
-          }}
-        >
-          <Link to="/vendor" className="nav-link" style={{ color: '#27ae60', fontWeight: 1000 }}>Vendor</Link>
-        </div>
 
 
-        <div
-          className="card shadow-lg border-0 rounded-4 p-5 mt-5"
-          style={{
-            background: 'linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%)',
-            border: '2px solid #ffb347',
-            maxWidth: 500,
-            width: '100%',
-            height: '100%',
-            textAlign: 'center'
-          }}
-        >
-          <Link to="/ordination" className="nav-link" style={{ color: '#27ae60', fontWeight: 1000 }}>Food</Link>
+      <div className="py-4">
+        <h2 className="fw-bold text-center mb-4">{t("vendor.allVendors")}</h2>
+        <div className="g-4">
+          <div className="col">
+            <div className="card shadow-lg border-0">
+              <Vendor />
+            </div>
+          </div>
         </div>
+      </div>
+
+       <div className="text-center py-3">
+        <Link to="/ordination" className="nav-link" style={{ color: '#27ae60', fontWeight: 1000 }}>
+          Food
+        </Link>
       </div>
       <Footer />
     </>

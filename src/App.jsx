@@ -13,7 +13,7 @@ import Basket from './pages/Basket';
 import Chat from './components/chat';
 import React, { useState } from "react";
 import { useLocation } from "react-router";
-import Vendor from './pages/Vendor';
+import Vendor from './components/Vendor';
 import RegistrationVendor from './pages/RegistrationVendor';
 import VendorProductOrdination from './pages/VendorProductOrdination';
 import Address from './components/Address';

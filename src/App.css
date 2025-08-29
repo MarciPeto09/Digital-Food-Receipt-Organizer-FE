@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+.no-scrollbar::-webkit-scrollbar {
+  display: none; 
+}
+
 .background::before {
   content: "";
   position: absolute;
