@@ -9,6 +9,8 @@ const Basket = () => {
     const { t } = useTranslation();
     const [basket, setBasket] = useState({ items: [] });
     const [total, setTotal] = useState(0);
+    const [quantities, setQuantities] = useState({});
+
 
 
     useEffect(() => {
@@ -144,6 +146,7 @@ return (
                                         <button
                                             className="btn btn-sm btn-outline-warning fw-semibold rounded-pill"
                                             onClick={() => handleDecrementItemQuantity(item.id)}
+                                            disabled={item.quantity <= 1}
                                         >
                                             -
                                         </button>
