@@ -153,10 +153,10 @@ function AppContent() {
           </button>
           {showChat && (
             <div
-              className="position-fixed bottom-0 end-0 m-4 border rounded bg-white shadow d-flex flex-column"
-              style={{ width: "550px", height: "500px", zIndex: 1051 }}
+              className="position-fixed bottom-0 end-0 m-4 border bg-white shadow d-flex flex-column"
+              style={{ width: "550px", height: "500px", zIndex: 1051, borderRadius: "20px",}}
             >
-              <Chat onClose={() => setShowChat(false)} unSeenCount={unSeenCount} updateUnseenCounts={updateUnseenCounts} />            </div>
+              <Chat onClose={() => setShowChat(false)} unSeenCount={unSeenCount} updateUnseenCounts={updateUnseenCounts} /></div>
           )}
         </>
       )}

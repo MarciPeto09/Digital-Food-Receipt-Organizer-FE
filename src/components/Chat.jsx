@@ -87,11 +87,14 @@ const Chat = ({ onClose, unSeenCount, updateUnseenCounts }) => {
     <div
       className="d-flex flex-column h-100"
       style={{
-        width: '100%',
+        width: '100%', 
         background: '#fafafa',
         fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+        borderRadius: '20px',
+        overflow: 'hidden',
       }}
     >
+
       {/* Chat Header */}
       <div className="border-bottom p-3 d-flex justify-content-between align-items-center bg-white shadow-sm">
         <strong style={{ fontSize: '1.1rem' }}>Messages</strong>
@@ -123,9 +126,8 @@ const Chat = ({ onClose, unSeenCount, updateUnseenCounts }) => {
               .map((user) => (
                 <button
                   key={user.id}
-                  className={`list-group-item list-group-item-action border-0 rounded-pill mb-1 ${
-                    selectedUserId === user.id ? 'bg-primary text-black' : ''
-                  }`}
+                  className={`list-group-item list-group-item-action border-0 rounded-pill mb-1 ${selectedUserId === user.id ? 'bg-primary text-black' : ''
+                    }`}
                   style={{ background: 'linear-gradient(135deg, #fffbe6 0%, #ffe5b4 100%)' }}
                   onClick={() => setSelectedUserId(user.id)}
                 >
@@ -180,18 +182,16 @@ const Chat = ({ onClose, unSeenCount, updateUnseenCounts }) => {
             {messages.map((msg) => (
               <div
                 key={msg.id}
-                className={`d-flex mb-2 ${
-                  msg.senderId === Number(userId)
+                className={`d-flex mb-2 ${msg.senderId === Number(userId)
                     ? 'justify-content-end'
                     : 'justify-content-start'
-                }`}
+                  }`}
               >
                 <div
-                  className={`px-3 py-2 rounded-pill shadow-sm ${
-                    msg.senderId === Number(userId)
+                  className={`px-3 py-2 rounded-pill shadow-sm ${msg.senderId === Number(userId)
                       ? 'bg-primary text-black'
                       : 'bg-white'
-                  }`}
+                    }`}
                   style={{
                     maxWidth: '75%',
                     fontSize: '0.95rem',
