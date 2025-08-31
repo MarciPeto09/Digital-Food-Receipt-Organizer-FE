@@ -68,7 +68,7 @@ const NavBar = () => {
                 border: '4px solid #ffb347',
                 background: '#fffbe6'
               }}
-              alt="profile"s
+              alt="profile"
             /></Link>
 
              <Link to="/basket" className="nav-link ms-2">
