@@ -7,9 +7,9 @@ const FilterPanel =({ onFilter}) =>{
 
     const [startDate, setStartDate] = useState("");
     const [endDate, setEndDate] = useState("");
-    const [category, setCategory] = useState("");
     const [vendor, setVendor] = useState("");
     const [search, setSearch] = useState("");
+    const [category, setCategory] = useState("");
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -21,6 +21,25 @@ const FilterPanel =({ onFilter}) =>{
             search
         });
     };
+
+    const categories = [
+    { key: 'MEAT', label: t('category.meat') },
+    { key: 'FISH', label: t('category.fish') },
+    { key: 'EGGS', label: t('category.eggs') },
+    { key: 'DAIRY', label: t('category.dairy') },
+    { key: 'GRAINS', label: t('category.grains') },
+    { key: 'VEGETABLES', label: t('category.vegetables') },
+    { key: 'FRUIT', label: t('category.fruit') },
+    { key: 'OIL', label: t('category.oil') },
+    { key: 'SWEET', label: t('category.sweet') },
+    { key: 'DRINKS', label: t('category.drinks') },
+    { key: 'SPICES', label: t('category.spices') },
+    { key: 'FROZEN', label: t('category.frozen') },
+    { key: 'PACKAGING', label: t('category.packaging') },
+    { key: 'PRODUCTS', label: t('category.products') },
+  ];
+
+
 
     return (
         <form onSubmit={handleSubmit} className="row g-3 align-items-end justify-content-center mb-3">
@@ -64,10 +83,21 @@ const FilterPanel =({ onFilter}) =>{
                         color: '#d35400'
                     }}
                 >
-                    <option value="">{t('filter.categorySelect.all')}</option>
-                    <option value="groceries">{t('filter.categorySelect.groceries')}</option>
-                    <option value="electronics">{t('filter.categorySelect.electronics')}</option>
-                    <option value="clothing">{t('filter.categorySelect.clothing')}</option>
+                    {categories.map(({ key, label }) => (
+                <option
+                  key={key}
+                  className="text-decoration-none"
+                  style={{
+                    color: 'inherit',
+                    flex: '0 0 auto',
+                    width: '200px',
+                  }}
+                >
+                  <div className="card shadow-lg border-0 h-100 text-center p-3">
+                    <h4 className="card-title fw-bold">{label}</h4>
+                  </div>
+                </option>
+              ))}
                 </select>
             </div>
             <div className="col-md-2">

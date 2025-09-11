@@ -4,9 +4,11 @@ import axios from "axios";
 import '../App.css';
 import NavBar from '../components/Navbar';
 import { useParams } from "react-router-dom";
+import Footer from "../components/Footer";
+import VendorProductListComponent from "../components/VendorProductListComponent";
 
 
-const VendorProductOrdination = () =>{
+const VendorProductOrdination = () => {
   const API_URL = 'http://localhost:8080/api/vendors';
   const { t } = useTranslation();
   const [items, setItems] = useState([]);
@@ -15,13 +17,13 @@ const VendorProductOrdination = () =>{
 
 
 
- const handleQuantityChange = (itemId, value) => {
-  const parsed = parseInt(value, 10);
-  setQuantities(prev => ({
-    ...prev,
-    [itemId]: isNaN(parsed) || parsed < 1 ? 1 : parsed
-  }));
-};
+  const handleQuantityChange = (itemId, value) => {
+    const parsed = parseInt(value, 10);
+    setQuantities(prev => ({
+      ...prev,
+      [itemId]: isNaN(parsed) || parsed < 1 ? 1 : parsed
+    }));
+  };
 
   useEffect(() => {
     const fetchItems = async () => {
@@ -43,77 +45,56 @@ const VendorProductOrdination = () =>{
   }, []);
 
 
-const handleAddBasketItemToBasket = async (e, item) => {
-  e.preventDefault();
-  
-  const token = localStorage.getItem('token');
-  const basketId = localStorage.getItem('basketId');
+  const handleAddBasketItemToBasket = async (e, item) => {
+    e.preventDefault();
 
-  if (!token || !basketId) {
-    alert("You are not authenticated or basketId is missing. Please login again.");
-    return;
-  }
+    const token = localStorage.getItem('token');
+    const basketId = localStorage.getItem('basketId');
 
-  const productId = item.id;
-  const itemQuantity = quantities[item.id] || 1;
+    if (!token || !basketId) {
+      alert("You are not authenticated or basketId is missing. Please login again.");
+      return;
+    }
 
-  if (itemQuantity <= 0) {
-    alert("Quantity must be at least 1");
-    return;
-  }
+    const productId = item.id;
+    const itemQuantity = quantities[item.id] || 1;
 
-  try {
-    const response = await axios.post(
-      `http://localhost:8080/api/basket/addBasketItemToBasket/${basketId}`,
-      null, 
-      {
-        params: {
-          productId,
-          itemQuantity
-        },
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        withCredentials: true, 
-      }
-    );
-    console.log(response.data);
+    if (itemQuantity <= 0) {
+      alert("Quantity must be at least 1");
+      return;
+    }
 
-  } catch (error) {
-    console.error(error);
-    alert("Error adding item to basket: " + (error.response?.data?.message || error.message));
-  }
-};
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/api/basket/addBasketItemToBasket/${basketId}`,
+        null,
+        {
+          params: {
+            productId,
+            itemQuantity
+          },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          withCredentials: true,
+        }
+      );
+      console.log(response.data);
+
+    } catch (error) {
+      console.error(error);
+      alert("Error adding item to basket: " + (error.response?.data?.message || error.message));
+    }
+  };
 
   return (
     <>
       <NavBar />
       <div className="background">
         <div className="content">
-          <div className="row row-cols-1 row-cols-md-3 g-4">
-            {items.map((item) => (
-              <div key={item.id || item.itemName} className="col">
-                <div className="card h-100 text-dark">
-                  <div className="card-body">
-                    <h5 className="card-title">{item.productName}</h5>
-                    <p className="card-text"><strong>Quantity:</strong> {item.quantity}</p>
-                    <p className="card-text"><strong>Unit Price:</strong> {item.unitPrice?.toFixed(2)}</p>
-                    <p className="card-text"><strong>Category:</strong> {item.category?.name || 'Uncategorized'}</p>
-                    <button className="btn btn-primary" onClick={(e) => handleAddBasketItemToBasket(e, item)}>{t ? t('items.add') : 'Add'}</button>
-                    <input
-                      type="number"
-                      min={1}
-                      value={quantities[item.id] || 1}
-                      onChange={e => handleQuantityChange(item.id, e.target.value)}
-                      style={{ width: 60, marginLeft: 8 }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+          <VendorProductListComponent vendorId={vendorId} />
+        </div></div>
+      <Footer />
     </>
   );
 }; export default VendorProductOrdination;

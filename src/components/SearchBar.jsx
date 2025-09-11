@@ -69,7 +69,7 @@ const SearchBar = () => {
                 onChange={e => setSearchTerm(e.target.value)}
                 placeholder={t('searchBar.placeholder') || "Search..."}
                 className="form-control mb-2"
-                style={{ borderColor: "#ff6f61",width: '100%' }}
+                style={{ borderColor: "#ff6f61", width: '100%' }}
             />
 
             {searchTerm.length > 0 && (
@@ -84,13 +84,41 @@ const SearchBar = () => {
                                     <span role="img" >{cat.icon} {cat.label}</span>
                                 </h6>
                                 <ul className="list-group">
-                                    {filteredData[cat.key].map(item => (
-                                        <li key={item.id || item.username} className="list-group-item list-group-item-action">
-                                            <Link to={`/results?query=${encodeURIComponent(item.name)}`} className="text-decoration-none text-dark d-block">
-                                            {item.name || item.username || item.productName || item.itemName || `Receipt #${item.id}`}
-                                            </Link>
-                                        </li>
-                                    ))}
+                                    {filteredData[cat.key].map(item => {
+                                        let linkPath = "";
+
+                                        switch (cat.key) {
+                                            case "vendors":
+                                                linkPath = `/vendors/vendorById/${item.id}`;
+                                                break;
+                                            case "users":
+                                                linkPath = `/users/${item.id}`;
+                                                break;
+                                            case "products":
+                                                linkPath = `/products/${item.id}`;
+                                                break;
+                                            case "receipts":
+                                                linkPath = `/receipts/${item.id}`;
+                                                break;
+                                            case "receiptItems":
+                                                linkPath = `/receipt-items/${item.id}`;
+                                                break;
+                                            default:
+                                                linkPath = `/results?query=${encodeURIComponent(item.name || item.username)}`;
+                                        }
+
+                                        return (
+                                            <li key={item.id || item.username} className="list-group-item list-group-item-action">
+                                                <Link
+                                                    to={linkPath}
+                                                    className="text-decoration-none text-dark d-block"
+                                                >
+                                                    {item.name || item.username || item.productName || item.itemName || `Receipt #${item.id}`}
+                                                </Link>
+                                            </li>
+                                        );
+                                    })}
+
                                 </ul>
                             </div>
                         )

@@ -19,6 +19,10 @@ import VendorProductOrdination from './pages/VendorProductOrdination';
 import Address from './components/Address';
 import ProductsXCategory from './pages/ProductsXCategory';
 import axios from "axios";
+import ProductDetail from './pages/detailPages/ProductDetail';
+import ReceiptItemDetail from './pages/detailPages/ReceiptItemDetail';
+import UserDetail from './pages/detailPages/UserDetail';
+import VendorDetail from './pages/detailPages/VendorDetail';
 
 function AppContent() {
   const [showChat, setShowChat] = useState(false);
@@ -133,6 +137,11 @@ function AppContent() {
         <Route path="/address" element={<Address />} />
         <Route path="/productsXCategory/:itemCategory" element={<ProductsXCategory />} />
         <Route path="/vendorProductOrdination/:vendorId" element={<VendorProductOrdination />} />
+        <Route path="/vendors/vendorById/:vendorId" element={<VendorDetail />} />
+        <Route path="/users/:id" element={<UserDetail />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/receipts/:id" element={<ReceiptDetail />} />
+        <Route path="/receipt-items/:id" element={<ReceiptItemDetail />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
 
@@ -154,7 +163,7 @@ function AppContent() {
           {showChat && (
             <div
               className="position-fixed bottom-0 end-0 m-4 border bg-white shadow d-flex flex-column"
-              style={{ width: "550px", height: "500px", zIndex: 1051, borderRadius: "20px",}}
+              style={{ width: "550px", height: "500px", zIndex: 1051, borderRadius: "20px", }}
             >
               <Chat onClose={() => setShowChat(false)} unSeenCount={unSeenCount} updateUnseenCounts={updateUnseenCounts} /></div>
           )}
