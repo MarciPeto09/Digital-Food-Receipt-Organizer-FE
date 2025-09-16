@@ -139,7 +139,7 @@ function AppContent() {
         <Route path="/vendorProductOrdination/:vendorId" element={<VendorProductOrdination />} />
         <Route path="/vendors/vendorById/:vendorId" element={<VendorDetail />} />
         <Route path="/users/:id" element={<UserDetail />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/receipts/:id" element={<ReceiptDetail />} />
         <Route path="/receipt-items/:id" element={<ReceiptItemDetail />} />
         <Route path="*" element={<NotFound />} />

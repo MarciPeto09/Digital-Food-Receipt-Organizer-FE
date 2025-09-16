@@ -91,6 +91,7 @@ const en = {
         name: "Name",
         quantity:"Quantity",
         unitPrice:"Unit Price",
+        category:"Category",
     }
 
 };

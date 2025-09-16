@@ -91,6 +91,7 @@ language:"Lingua",
         name: "Nome",
         quantity:"Quantita",
         unitPrice:"Prezzo Unitario",
+        category:"Categoria",
     }
 
 };
