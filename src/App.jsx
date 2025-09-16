@@ -138,7 +138,7 @@ function AppContent() {
         <Route path="/productsXCategory/:itemCategory" element={<ProductsXCategory />} />
         <Route path="/vendorProductOrdination/:vendorId" element={<VendorProductOrdination />} />
         <Route path="/vendors/vendorById/:vendorId" element={<VendorDetail />} />
-        <Route path="/users/:id" element={<UserDetail />} />
+        <Route path="/users/:userId" element={<UserDetail />} />
         <Route path="/products/:productId" element={<ProductDetail />} />
         <Route path="/receipts/:id" element={<ReceiptDetail />} />
         <Route path="/receipt-items/:id" element={<ReceiptItemDetail />} />

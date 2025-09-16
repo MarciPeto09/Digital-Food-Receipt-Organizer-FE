@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import axios from "axios";
 import '../App.css';
 import NavBar from '../components/Navbar';
+import Footer from "../components/Footer";
 import { useBasket } from '../utils/useBasket';
 
 const Ordination = () => {
@@ -66,6 +67,7 @@ const Ordination = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 }
