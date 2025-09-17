@@ -66,6 +66,7 @@ language:"Lingua",
         placeholder:"Inserisci l'indirizzo manualmente...",
         position:"Prendendo posizione...",
         address:"Indirizzo",
+        selected: "Indirizzo Selezionato",
     },
     vendor:{
         allVendors:"Tutti i Venditori..."

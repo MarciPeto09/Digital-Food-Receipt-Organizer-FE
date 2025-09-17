@@ -51,7 +51,7 @@ const RegistrationUser = () => {
             >
                 <div className="text-center mb-4">
                     <span style={{ fontSize: '2.2rem', display: 'inline-block' }} role="img" aria-label="register">🍯</span>
-                    <h2 className="fw-bold mb-0" style={{ color: '#d35400' }}>{t('login.register')}</h2>
+                    <h2 className="fw-bold mb-0" style={{ color: '#d35400' }}>{t('nav.register')}</h2>
                 </div>
                 <form onSubmit={handleRegister}>
                     <div className="mb-3">

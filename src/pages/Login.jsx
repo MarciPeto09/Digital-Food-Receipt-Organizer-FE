@@ -109,7 +109,7 @@ const Login = () => {
           </button>
         </form>
 
-        <div className="text-center mt-3">
+       {/*  <div className="text-center mt-3">
           <button
             onClick={() => navigate('/register')}
             className="btn btn-outline-secondary"
@@ -124,7 +124,7 @@ const Login = () => {
           >
             {t('login.register')}
           </button>
-        </div>
+        </div>*/}
       </div>
     </div>
   );

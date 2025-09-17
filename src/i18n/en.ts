@@ -66,6 +66,7 @@ const en = {
         placeholder: "Enter the address manually...",
         position: "Taking your position...",
         address: "Address",
+        selected: "Selected Address",
     },
     vendor: {
         allVendors: "All Vendors..."
@@ -101,7 +102,7 @@ const en = {
         address:"Address",
         vendor:"Vendor",
         total:"Total Amount",
-    },
+    }
 
 };
 
