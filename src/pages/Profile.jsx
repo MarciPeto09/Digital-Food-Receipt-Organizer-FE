@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import NavBar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useLocation } from "react-router-dom";
 
 const Profile = () => {
   const API_URL = 'http://localhost:8080/api/users';
@@ -13,27 +14,32 @@ const Profile = () => {
   const { id } = useParams();
   const [photo, setPhoto] = useState();
   const [role,setRole] = useState("");
+   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUser = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const response = await axios.get(`${API_URL}/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setUsername(response.data.username);
-        setEmail(response.data.email);
-        setPhoto(response.data.photo);
-        setRole(response.data.role)
-      } catch (error) {
-        console.error(error);
-      }
+        try {
+            const token = localStorage.getItem('token');
+            const response = await axios.get(`${API_URL}/${id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            setUsername(response.data.username);
+            setEmail(response.data.email);
+            setPhoto(response.data.photo);
+            setRole(response.data.role);
+        } catch (error) {
+            console.error(error);
+        }
     };
-    fetchUser();
-  }, [id]);
+
+    if (location.state?.refresh) {
+      fetchUser();
+    }
+}, [id, location.state?.refresh]); 
+
 
   return (
     <>
