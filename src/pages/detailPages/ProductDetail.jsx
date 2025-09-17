@@ -92,31 +92,38 @@ const ProductDetail = () => {
     };
 
 
-    return (
+     return (
         <>
             <NavBar />
-            <div>
-                <div className="conteiner d-flex justify-content-center mt-5">
-                    {loading && <p>Loading...</p>}
-                    {!loading && !product && <p>No product found</p>}
+            <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+                <div className="w-100" style={{ maxWidth: 500 }}>
+                    {loading && <div className="text-center text-secondary">Loading...</div>}
+                    {!loading && !product && <div className="alert alert-warning text-center">No product found</div>}
                     {!loading && product && (
-                        <div className="card h-100 w-50 shadow-lg border-0 rounded-4 p-4 text-dark text-start product-card">
-                            <h5 className="card-title mb-3">{product.productName}</h5>
-                            <p className=" "><strong>{t('products.quantity')}:</strong> {product.quantity}</p>
-                            <p className=" "><strong>{t('products.unitPrice')}:</strong> {product.unitPrice?.toFixed(2)}</p>
-                            <p className=" "><strong>{t('products.category')}:</strong> {product.category?.name || 'Uncategorized'}</p>
+                        <div className="card h-100 shadow-lg border-0 rounded-4 p-4 text-dark text-start">
+                            <div className="text-center mb-3">
+                            </div>
+                            <h3 className="fw-bold mb-3 text-warning">{product.productName}</h3>
+                            <p><strong>{t('products.quantity')}:</strong> {product.quantity}</p>
+                            <p><strong>{t('products.unitPrice')}:</strong> {product.unitPrice?.toFixed(2)}</p>
+                            <p><strong>{t('products.category')}:</strong> {product.category?.name || 'Uncategorized'}</p>
                             <div className="d-flex justify-content-end align-items-end mt-3 gap-3">
-                                <button className="btn btn-primary" onClick={(e) => handleAddBasketItemToBasket(e, item)}>{t ? t('items.add') : 'Add'}</button>
+                                <button className="btn btn-warning fw-semibold rounded-pill"
+                                    onClick={handleAddBasketItemToBasket}>
+                                    {t ? t('items.add') : 'Add'}
+                                </button>
                                 <input
-                                type="number"
-                                min={1}
-                                value={quantities[product.id] || 1} 
-                                onChange={e => handleQuantityChange(product.id, e.target.value)}
-                                style={{ width: 60, marginLeft: 8 }}
-                            />
+                                    type="number"
+                                    min={1}
+                                    className="form-control"
+                                    style={{ width: 70 }}
+                                    value={quantities[productId] || 1}
+                                    onChange={e => handleQuantityChange(productId, e.target.value)}
+                                />
+                            </div>
                         </div>
-                    </div>
-                )}</div>
+                    )}
+                </div>
             </div>
             <Footer />
         </>

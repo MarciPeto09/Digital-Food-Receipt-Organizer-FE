@@ -113,15 +113,17 @@ const VendorDetail = () => {
 
     return (
         <>
-        <NavBar />
-            <div className="container mt-5">
-                <div className="card h-100 text-dark text-center ">
-                        <h2>{vendor.name}</h2>
-                        <p>  {vendor.location}</p>
+            <NavBar />
+            <div className="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-light">
+                <div className="card shadow-lg border-0 rounded-4 p-4 my-5 w-100" style={{ maxWidth: 600 }}>
+                    <div className="text-center mb-3">
                     </div>
-                <VendorProductListComponent vendorId={vendorId}/>
+                    <h2 className="fw-bold mb-1" style={{ color: '#d35400' }}>{vendor.name}</h2>
+                    <p className="mb-2 text-secondary">{vendor.location}</p>
+                    <hr />
+                </div>
             </div>
-            <Footer/>
+            <Footer />
         </>
     );
 

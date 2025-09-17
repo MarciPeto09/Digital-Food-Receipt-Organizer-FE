@@ -38,34 +38,38 @@ const UserDetail = () => {
         if (userId) fetchUsers();
     }, [userId]);
 
-    return (
+   return (
         <>
             <NavBar />
-            <div className="conteiner d-flex justify-content-center mt-5">
-                {loading && <p>Loading...</p>}
-                {!loading && !user && <p>User not found</p>}
-                {!loading && user && (
-                    <div className="card h-100 w-50 shadow-lg border-0 rounded-4 p-4 text-dark f-flex align-items-center product-card">
-                        <img
-                            src={photo ? `http://localhost:8080/uploads/${photo}` : '/default-profile.png'}
-                            className="rounded-circle shadow mb-2"
-                            style={{
-                                width: '120px',
-                                height: '120px',
-                                objectFit: 'cover',
-                                border: '4px solid #ffb347',
-                                background: '#fffbe6'
-                            }}
-                            alt="profile"
-                        />
-                            <h3>{user.username}</h3>
-                            <p>{user.role}</p>
-                            <p>{user.email}</p>
-                            <p>{user.deliveryAddress}</p>
-                            <p className="text-danger">Chat To be implemented</p>
+            <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+                <div className="w-100" style={{ maxWidth: 420 }}>
+                    {loading && <div className="text-center text-secondary">Loading...</div>}
+                    {!loading && !user && <div className="alert alert-warning text-center">User not found</div>}
+                    {!loading && user && (
+                        <div className="card shadow-lg border-0 rounded-4 p-4 text-dark align-items-center">
+                            <div className="text-center mb-3">
+                            </div>
+                            <img
+                                src={photo ? `http://localhost:8080/uploads/${photo}` : '/default-profile.png'}
+                                className="rounded-circle shadow mb-3 border border-warning border-4"
+                                style={{
+                                    width: '120px',
+                                    height: '120px',
+                                    objectFit: 'cover',
+                                    background: '#fffbe6'
+                                }}
+                                alt="profile"
+                            />
+                            <h3 className="fw-bold mb-1" style={{ color: '#d35400' }}>{user.username}</h3>
+                            <p className="mb-1 text-secondary">{user.role}</p>
+                            <p className="mb-1">{user.email}</p>
+                            <p className="mb-2">{user.deliveryAddress}</p>
+                            <div className="alert alert-danger py-2 mb-0">Chat To be implemented</div>
                         </div>
-                )}
+                    )}
+                </div>
             </div>
             <Footer />
-        </>);
+        </>
+    );
 }; export default UserDetail;
