@@ -54,6 +54,7 @@ const ModificaProfile = () => {
    return (
     <>
         <NavBar />
+        <div  className="background">
         <div className="container py-5">
             <div
                 className="card shadow-lg border-0 rounded-4"
@@ -160,6 +161,7 @@ const ModificaProfile = () => {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
         <Footer />
     </>

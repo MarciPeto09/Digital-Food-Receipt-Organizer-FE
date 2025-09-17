@@ -43,17 +43,18 @@ const ProductsXCategory = () => {
   return (
     <>
       <NavBar />
-      <div className="container">
-        <h2>{t('category.category')} - {itemCategory}</h2>
-        <div className="row">
-          {products.map((item) => (
-            <div key={item.id || item.itemName} className="col-4 mb-3">
-              <div className="card">
-                <div className="card-body">
-                  <h5 className="card-title">{item.productName}</h5>
-                  <p className="card-text"><strong>{t('products.quantity')}</strong> {item.quantity}</p>
-                  <p className="card-text"><strong>{t('products.unitPrice')}</strong> {item.unitPrice?.toFixed(2)}</p>
-                  <button className="btn btn-primary" onClick={(e) => handleAddBasketItemToBasket(e, item)}>{t ? t('items.add') : 'Add'}</button>
+      <div className="background">
+        <div className="container">
+          <h2>{t('category.category')} - {itemCategory}</h2>
+          <div className="row">
+            {products.map((item) => (
+              <div key={item.id || item.itemName} className="col-4 mb-3">
+                <div className="card">
+                  <div className="card-body">
+                    <h5 className="card-title">{item.productName}</h5>
+                    <p className="card-text"><strong>{t('products.quantity')}</strong> {item.quantity}</p>
+                    <p className="card-text"><strong>{t('products.unitPrice')}</strong> {item.unitPrice?.toFixed(2)}</p>
+                    <button className="btn btn-primary" onClick={(e) => handleAddBasketItemToBasket(e, item)}>{t ? t('items.add') : 'Add'}</button>
                     <input
                       type="number"
                       min={1}
@@ -61,10 +62,11 @@ const ProductsXCategory = () => {
                       onChange={e => handleQuantityChange(item.id, e.target.value)}
                       style={{ width: 60, marginLeft: 8 }}
                     />
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
       <Footer />

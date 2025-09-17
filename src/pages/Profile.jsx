@@ -38,7 +38,7 @@ const Profile = () => {
   return (
     <>
     <NavBar />
-    <div className="profile-bg vw-100 vh-100 d-flex align-items-center justify-content-center">
+    <div className="background profile-bg vw-100 vh-100 d-flex align-items-center justify-content-center">
       <section className="w-100 px-4 py-5">
         <div className="row d-flex justify-content-center">
           <div className="col col-md-9 col-lg-7 col-xl-6">

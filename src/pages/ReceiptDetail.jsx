@@ -74,7 +74,7 @@ useEffect(() => {
                 className="min-vh-100 py-5 d-flex flex-column align-items-center"
                 style={{
                     overflowY: 'auto',
-                    background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat fixed'
+                    background: 'url("https://img.computing.es/wp-content/uploads/2025/04/02163504/Gatronomia.jpg") center/cover no-repeat fixed'
                 }}
             >
                 <div

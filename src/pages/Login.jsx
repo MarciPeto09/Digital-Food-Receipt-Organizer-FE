@@ -31,7 +31,7 @@ const Login = () => {
 
  return (
     <div className="min-vh-100 d-flex align-items-center justify-content-center" style={{
-      background: 'url("https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1350&q=80") center/cover no-repeat'
+      background: 'url("https://img.computing.es/wp-content/uploads/2025/04/02163504/Gatronomia.jpg") center/cover no-repeat'
     }}>
       <div
         className="card shadow-lg border-0 rounded-4 p-4"

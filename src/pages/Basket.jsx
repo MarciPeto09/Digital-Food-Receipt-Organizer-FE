@@ -108,7 +108,7 @@ const Basket = () => {
 return (
     <>
         <NavBar />
-        <div className="min-vh-100 d-flex flex-column align-items-center justify-content-start bg-light py-5">
+        <div className="background min-vh-100 d-flex flex-column align-items-center justify-content-start bg-light py-5">
             <div className="card shadow-lg border-warning border-2 rounded-4 p-5 w-100" style={{ maxWidth: 700 }}>
                 <div className="text-center mb-4">
                     <span className="fs-1 d-inline-block" role="img" aria-label="basket">🧺</span>
