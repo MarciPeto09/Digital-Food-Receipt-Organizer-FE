@@ -33,7 +33,7 @@ const Profile = () => {
       }
     };
     fetchUser();
-  }, [username,email,photo]);
+  }, []);
 
   return (
     <>
