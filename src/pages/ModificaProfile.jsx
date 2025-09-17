@@ -45,7 +45,8 @@ const ModificaProfile = () => {
                     'Content-Type': 'multipart/form-data',
                 },
             });
-            console.log("Utente aggiornato:", response.data);
+            navigate(`/profile/${id}`);
+            window.location.reload();
         } catch (error) {
             console.error("Errore nell'aggiornamento:", error);
         }
