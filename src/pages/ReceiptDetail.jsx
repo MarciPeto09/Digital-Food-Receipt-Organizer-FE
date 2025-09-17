@@ -13,30 +13,30 @@ const ReceiptDetail = () => {
     const [refreshTrigger, setRefreshTrigger] = useState(0);
 
     const fetchReceipt = async () => {
-    try {
-        const token = localStorage.getItem('token');
-        const basketId = localStorage.getItem("basketId");
+        try {
+            const token = localStorage.getItem('token');
+            const basketId = localStorage.getItem("basketId");
 
-        const response = await axios.post(`${API_URL}/from-basket/${basketId}`,
-            {},
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-        console.log("Receipt Data:", response.data);
-        setReceipt(response.data);
-    } catch (error) {
-        console.error(error);
-    } finally {
-        setLoading(false);
-    }
-};
+            const response = await axios.post(`${API_URL}/from-basket/${basketId}`,
+                {},
+                {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+            console.log("Receipt Data:", response.data);
+            setReceipt(response.data);
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-useEffect(() => {
-    fetchReceipt();
-}, []);
+    useEffect(() => {
+        fetchReceipt();
+    }, []);
 
     const items = Array.isArray(receipt.items) ? receipt.items : [];
 
@@ -98,7 +98,6 @@ useEffect(() => {
                     </div>
 
                     <div className="d-flex justify-content-between mb-3 px-2">
-                        <div><strong>Vendor:</strong> {receipt.vendor?.name || 'Unknown'}</div>
                         <div><strong>Total:</strong> ${receipt.totalAmount?.toFixed(2)}</div>
                     </div>
 
@@ -111,7 +110,9 @@ useEffect(() => {
                                 <div>
                                     <div><strong>{item.itemName}</strong></div>
                                     <div style={{ fontSize: '0.85rem' }}>
-                                        Qty: {item.quantity} | ${item.unitPrice?.toFixed(2)} each
+                                        Qty: {item.quantity} | ${item.unitPrice?.toFixed(2)} | {item.productDTO && item.productDTO.vendorDTO && item.productDTO.vendorDTO.name
+                                            ? item.productDTO.vendorDTO.name
+                                            : 'Unknown'}
                                     </div>
                                 </div>
                                 <div className="text-end" style={{ whiteSpace: 'nowrap' }}>
@@ -124,7 +125,7 @@ useEffect(() => {
                         ))}
                     </div>
                     <div className="mr-3 ms-1">
-                    <strong>Address:</strong> {receipt.deliveryAddress} 
+                        <strong>Address:</strong> {receipt.deliveryAddress}
                     </div>
                     <div className="border-top pt-3 px-2 d-flex justify-content-between fw-bold fs-5">
                         <div>Total Paid:</div>
@@ -145,7 +146,7 @@ useEffect(() => {
                     </div>
                 </div>
                 <div className="mb-5 w-100 px-3">
-                <ReceiptList refreshTrigger={refreshTrigger} />
+                    <ReceiptList refreshTrigger={refreshTrigger} />
                 </div>
             </div>
             <Footer />
