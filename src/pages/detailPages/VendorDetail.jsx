@@ -114,7 +114,7 @@ const VendorDetail = () => {
     return (
         <>
             <NavBar />
-            <div className="min-vh-100 d-flex flex-column align-items-center justify-content-center bg-light">
+            <div className="background min-vh-100 d-flex flex-column align-items-center justify-content-center bg-light">
                 <div className="card shadow-lg border-0 rounded-4 p-4 my-5 w-100" style={{ maxWidth: 600 }}>
                     <div className="text-center mb-3">
                     </div>

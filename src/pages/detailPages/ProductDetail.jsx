@@ -95,7 +95,7 @@ const ProductDetail = () => {
      return (
         <>
             <NavBar />
-            <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+            <div className="background min-vh-100 d-flex align-items-center justify-content-center bg-light">
                 <div className="w-100" style={{ maxWidth: 500 }}>
                     {loading && <div className="text-center text-secondary">Loading...</div>}
                     {!loading && !product && <div className="alert alert-warning text-center">No product found</div>}

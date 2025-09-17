@@ -41,7 +41,7 @@ const ReceiptItemDetail = () => {
     return (
         <>
             <NavBar />
-                <div className=" background min-vh-100 d-flex align-items-center justify-content-center bg-light">
+                <div className="background min-vh-100 d-flex align-items-center justify-content-center bg-light">
                     <div className="card shadow-lg border-0 rounded-4 p-5 my-5 w-100" style={{ maxWidth: 700 }}>
                         <div className="text-center mb-4">
                             <span style={{ fontSize: '2.2rem' }} role="img" aria-label="receipt">🧾</span>

@@ -41,7 +41,7 @@ const UserDetail = () => {
    return (
         <>
             <NavBar />
-            <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+            <div className="background min-vh-100 d-flex align-items-center justify-content-center bg-light">
                 <div className="w-100" style={{ maxWidth: 420 }}>
                     {loading && <div className="text-center text-secondary">Loading...</div>}
                     {!loading && !user && <div className="alert alert-warning text-center">User not found</div>}
