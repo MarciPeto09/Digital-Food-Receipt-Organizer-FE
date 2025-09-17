@@ -124,7 +124,7 @@ useEffect(() => {
                         ))}
                     </div>
                     <div className="mr-3 ms-1">
-                    <strong>Address:</strong> {receipt.deliveryAddress}s 
+                    <strong>Address:</strong> {receipt.deliveryAddress} 
                     </div>
                     <div className="border-top pt-3 px-2 d-flex justify-content-between fw-bold fs-5">
                         <div>Total Paid:</div>

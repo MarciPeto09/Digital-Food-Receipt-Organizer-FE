@@ -92,7 +92,16 @@ language:"Lingua",
         quantity:"Quantita",
         unitPrice:"Prezzo Unitario",
         category:"Categoria",
-    }
+    },
+    receipt: {
+        title: "Ricevuta",
+        noFound:"Nessuna ricevuta trovata",
+        id:"Id",
+        date:"Data di acquisto",
+        address:"Indirizzo",
+        vendor:"Fornitore",
+        total:"Importo totale",
+    },
 
 };
 

@@ -92,7 +92,16 @@ const en = {
         quantity:"Quantity",
         unitPrice:"Unit Price",
         category:"Category",
-    }
+    },
+    receipt: {
+        title: "Receipt",
+        noFound:"No receipts found",
+        id:"Id",
+        date:"Purchase Date",
+        address:"Address",
+        vendor:"Vendor",
+        total:"Total Amount",
+    },
 
 };
 
